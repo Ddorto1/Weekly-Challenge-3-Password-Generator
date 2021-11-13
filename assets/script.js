@@ -3,6 +3,7 @@
 var upperCase= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowerCase= "abcdefghijklmnopqurstuvwxyz";
 var specialChar= "!@#$%^&*()?><+";
+var numberChar= "0123456789"
 var passwordChar= "";
 
 // Get references to the #generate element
@@ -41,10 +42,16 @@ function writePassword() {
         passwordChar+=specialChar;
         console.log (special);
     }   
+    var numbers=window.confirm ("Would you like your password to contain numbers?")
+    if (numbers){
+        passwordChar+= numberChar;
+        console.log (numbers);
+    }
     //for loop to randomize password
     for(var i=0; i<passwordLength; i++){
-       result+=Math.floor(Math.random()*passwordLength.length);
-   console.log (result);
+       var randomNumber=Math.floor(Math.random()*passwordChar.length);
+       result+=passwordChar[randomNumber];
+   console.log (passwordChar[randomNumber]);
     }
 //write the password to the screen
   var password = result;
