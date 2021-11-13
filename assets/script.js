@@ -1,48 +1,59 @@
 // Assignment code here
+//declaring variables
 var upperCase= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowerCase= "abcdefghijklmnopqurstuvwxyz";
 var specialChar= "!@#$%^&*()?><+";
 var passwordChar= "";
 
 // Get references to the #generate element
+// selecting generate button and assigning it a variable
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+    var result="";
    var length=  window.prompt ("How many characters, from 8 to 128, would you like your password to contain? ");
-   console.log (length);
    if (length<8) {
        window.alert ("password length cannot be less than 8 characters");
+       writePassword();
        return"";
     }
    else if (length>128){
        window.alert ("password length cannot be more than 128 characters");
+       writePassword();
        return"";   
     }
-// else (length==null||length=="")
-//     window.alert ("Please enter a valid response!!");
-//     return"";
+    
+    console.log (length);
+
    var upper= window.confirm ("Would you like your password to contain upper case letters?");
-    console.log (upper);
     if (upper){
-        upperCase+=passwordChar;
+        passwordChar+=upperCase;
         console.log (upper);
     }
    var lower= window.confirm ("Would you like your password to contain lower case letters?");
-    console.log (lower);
     if (lower){
-        lowerCase+=passwordChar;
+        passwordChar+=lowerCase;
         console.log (lower);
     }
   var special= window.confirm ("Would you like your password to contain special characterrs?");
-    console.log (special);
     if (special){
-        specialChar+=passwordChar;
+        passwordChar+=specialChar;
+        console.log (special);
     }   
-   var password = generatePassword();
+
+    
+    for(var i=0; i<length.length; i++){
+        result+=passwordChar.charAt(Math.floor(Math.Random()*passwordChar.length));
+    return result;
+    }
+}
+  var password = writePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-}
+  
+
+
 
 
 
