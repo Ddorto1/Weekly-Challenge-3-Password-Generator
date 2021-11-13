@@ -12,20 +12,20 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
     var result="";
-   var length=  window.prompt ("How many characters, from 8 to 128, would you like your password to contain? ");
-   if (length<8) {
+   var passwordLength=  window.prompt ("How many characters, from 8 to 128, would you like your password to contain? ");
+   if (passwordLength<8) {
        window.alert ("password length cannot be less than 8 characters");
        writePassword();
        return"";
     }
-   else if (length>128){
+   else if (passwordLength>128){
        window.alert ("password length cannot be more than 128 characters");
        writePassword();
        return"";   
     }
     
-    console.log (length);
-
+    console.log (passwordLength);
+//password criteria
    var upper= window.confirm ("Would you like your password to contain upper case letters?");
     if (upper){
         passwordChar+=upperCase;
@@ -41,17 +41,16 @@ function writePassword() {
         passwordChar+=specialChar;
         console.log (special);
     }   
-
-    
-    for(var i=0; i<length.length; i++){
-        result+=passwordChar.charAt(Math.floor(Math.Random()*passwordChar.length));
-    return result;
+    //for loop to randomize password
+    for(var i=0; i<passwordLength; i++){
+       result+=Math.floor(Math.random()*passwordLength.length);
+   console.log (result);
     }
-}
-  var password = writePassword();
+//write the password to the screen
+  var password = result;
   var passwordText = document.querySelector("#password");
-  passwordText.value = password;
-  
+  passwordText.innerHTML = password;
+}
 
 
 
